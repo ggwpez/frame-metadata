@@ -290,9 +290,6 @@ pub enum StorageEntryType<T: Form = MetaForm> {
 		/// The type of the value.
 		value: T::Type,
 	},
-	PagedList {
-		value: T::Type,
-	}
 }
 
 impl IntoPortable for StorageEntryType {
@@ -308,11 +305,6 @@ impl IntoPortable for StorageEntryType {
 			} => StorageEntryType::Map {
 				hashers,
 				key: registry.register_type(&key),
-				value: registry.register_type(&value),
-			},
-			Self::PagedList {
-				value,
-			} => StorageEntryType::PagedList {
 				value: registry.register_type(&value),
 			},
 		}
